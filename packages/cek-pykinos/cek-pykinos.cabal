@@ -1,0 +1,39 @@
+cabal-version: 3.0
+name: cek-pykinos
+version: 0.1.0.0
+synopsis: Unrolled 32-frame SoA KontStack and 4096-cell chunked Store arena for CEK
+description:
+  High-performance unboxed continuation stack and Store arena for CEK abstract machines.
+license: EUPL-1.2
+author: Nadia Yvette Chambers
+maintainer: nadia.yvette.chambers@ik.me
+category: Development
+build-type: Simple
+tested-with: GHC == 9.14.1
+
+library
+  exposed-modules:
+    Cek.Pykinos.Kont
+    Cek.Pykinos.Store
+  hs-source-dirs: src
+  default-language: Haskell2010
+  ghc-options: -Wall -Wcompat -Wredundant-constraints
+  build-depends:
+    base >= 4.18 && < 5,
+    ghc-prim,
+    primitive >= 0.9,
+    cek-core,
+    pykinos-core
+
+test-suite tests
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  hs-source-dirs: test
+  default-language: Haskell2010
+  ghc-options: -Wall -Wcompat -Wredundant-constraints -threaded
+  build-depends:
+    base >= 4.18 && < 5,
+    cek-core,
+    cek-pykinos,
+    primitive >= 0.9,
+    hspec >= 2.10 && < 2.12
