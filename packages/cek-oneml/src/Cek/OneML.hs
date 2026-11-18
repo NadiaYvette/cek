@@ -36,7 +36,14 @@
 --      in $O(|Sig|)$ time. For every abstract type field ('SpecAbstract'), the evaluator
 --      mints a fresh, globally unique skolem constant ('CT_WNeu') in 'SoAStore',
 --      hiding the concrete implementation without dynamic wrapper closures.
-module Cek.Examples.OneML
+--
+-- > **Demonstrative Reference Implementation**: This package is an educational
+-- > and demonstrative reference implementation showcasing Andreas Rossberg's 1ML
+-- > first-class module system over the CEK abstract machine with MergeMorph3
+-- > existential sealing and Pykinos hidden classes. It is provided primarily as an
+-- > executable architectural example within the @cek@ ecosystem documentation.
+--
+module Cek.OneML
   ( -- * Type Specifications
     TypeSpec(..)
 

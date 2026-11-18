@@ -3,13 +3,25 @@ name: cek-polytropos
 version: 0.1.0.0
 synopsis: Universal Polytropos Rep Dissection for CEK abstract machines
 description:
-  Universal O(1) array cursor dissection over Polytropos.Core.Rep.
+  Universal O(1) array cursor dissection over Polytropos.Core.Rep,
+  enabling zero-cost structural traversal over open extensible rows.
 license: EUPL-1.2
+license-file: LICENSE
 author: Nadia Yvette Chambers
 maintainer: nadia.yvette.chambers@ik.me
-category: Development
+category: Compilers/Interpreters, Language
+homepage: https://github.com/NadiaYvette/cek
+bug-reports: https://github.com/NadiaYvette/cek/issues
+extra-doc-files:
+  README.md
+  CHANGELOG.md
 build-type: Simple
 tested-with: GHC == 9.14.1
+
+source-repository head
+  type: git
+  location: https://github.com/NadiaYvette/cek
+  subdir: packages/cek-polytropos
 
 library
   exposed-modules:
@@ -19,10 +31,10 @@ library
   ghc-options: -Wall -Wcompat -Wredundant-constraints
   build-depends:
     base >= 4.18 && < 5,
-    ghc-prim,
-    primitive >= 0.9,
-    cek-core,
-    polytropos-core
+    ghc-prim >= 0.10 && < 0.14,
+    primitive >= 0.9 && < 0.10,
+    cek-core >= 0.1.0.0 && < 0.2,
+    polytropos-core >= 0.1.0.0 && < 0.2
 
 test-suite tests
   type: exitcode-stdio-1.0
@@ -32,8 +44,8 @@ test-suite tests
   ghc-options: -Wall -Wcompat -Wredundant-constraints -threaded
   build-depends:
     base >= 4.18 && < 5,
-    cek-core,
-    cek-polytropos,
-    polytropos-core,
-    primitive >= 0.9,
+    cek-core >= 0.1.0.0 && < 0.2,
+    cek-polytropos >= 0.1.0.0 && < 0.2,
+    polytropos-core >= 0.1.0.0 && < 0.2,
+    primitive >= 0.9 && < 0.10,
     hspec >= 2.10 && < 2.12

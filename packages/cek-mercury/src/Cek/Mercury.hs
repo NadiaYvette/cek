@@ -41,7 +41,14 @@
 -- Mercury's @semidet@ deterministic commits (or Prolog cuts @!@) prune choice points.
 -- In 'solveMercury', cuts simply reset the choice point counter @cpCursor@ to the saved
 -- watermark, instantly reclaiming all intermediate choice point states.
-module Cek.Examples.Mercury
+--
+-- > **Demonstrative Reference Implementation**: This package is an educational
+-- > and demonstrative reference implementation showcasing relational unification,
+-- > WAM conditional trailing, and nondeterministic search over KontStack choice points.
+-- > It is provided primarily as an executable architectural example within the @cek@
+-- > ecosystem documentation.
+--
+module Cek.Mercury
   ( -- * Relational AST and Goals
     LogicTerm(..)
   , Goal(..)

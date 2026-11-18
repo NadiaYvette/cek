@@ -34,7 +34,14 @@
 --      'KontStack' in strictly $O(1)$ time via Copy-on-Write ('captureKontSoA').
 --      Invoking a captured continuation reinstates the execution context immediately
 --      ('restoreKontSoA') with zero stack unwinding overhead.
-module Cek.Examples.Scheme
+--
+-- > **Demonstrative Reference Implementation**: This package is an educational
+-- > and demonstrative reference implementation showcasing CEK machine execution with
+-- > first-class continuations (@call/cc@), mutable lexical state, and automatic
+-- > GHC 'Generic1' polynomial functor dissection. It is provided primarily as an
+-- > executable architectural example within the @cek@ ecosystem documentation.
+--
+module Cek.Scheme
   ( -- * Syntax Functors and Trees
     Fix(..)
   , SchemeF(..)

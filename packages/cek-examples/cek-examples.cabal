@@ -1,32 +1,46 @@
 cabal-version: 3.0
 name: cek-examples
 version: 0.1.0.0
-synopsis: Showcase mini-interpreters for CEK abstract machines
+synopsis: Umbrella showcase suite of mini-interpreters for CEK abstract machines
 description:
   Showcase mini-interpreters (Scheme, Prolog/Mercury, 1ML) demonstrating
   automatic Generic1 dissection, O(1) continuation capture, and MergeMorph3 sealing.
+
+  Notice: This umbrella package aggregates the standalone example packages
+  @cek-scheme@, @cek-mercury@, and @cek-oneml@ for testing and demonstration.
 license: EUPL-1.2
+license-file: LICENSE
 author: Nadia Yvette Chambers
 maintainer: nadia.yvette.chambers@ik.me
-category: Development
+category: Language, Compilers/Interpreters
+homepage: https://github.com/NadiaYvette/cek
+bug-reports: https://github.com/NadiaYvette/cek/issues
+extra-doc-files:
+  README.md
+  CHANGELOG.md
 build-type: Simple
 tested-with: GHC == 9.14.1
 
+source-repository head
+  type: git
+  location: https://github.com/NadiaYvette/cek
+  subdir: packages/cek-examples
+
 library
-  exposed-modules:
+  reexported-modules:
+    Cek.Scheme,
+    Cek.Mercury,
+    Cek.OneML,
     Cek.Examples.Scheme,
     Cek.Examples.Mercury,
     Cek.Examples.OneML
-  hs-source-dirs: src
   default-language: Haskell2010
   ghc-options: -Wall -Wcompat -Wredundant-constraints
   build-depends:
     base >= 4.18 && < 5,
-    ghc-prim,
-    primitive >= 0.9,
-    cek-core,
-    cek-pykinos,
-    pykinos-core
+    cek-scheme >= 0.1.0.0 && < 0.2,
+    cek-mercury >= 0.1.0.0 && < 0.2,
+    cek-oneml >= 0.1.0.0 && < 0.2
 
 test-suite tests
   type: exitcode-stdio-1.0
@@ -36,9 +50,9 @@ test-suite tests
   ghc-options: -Wall -Wcompat -Wredundant-constraints -threaded
   build-depends:
     base >= 4.18 && < 5,
-    cek-core,
-    cek-pykinos,
-    pykinos-core,
-    cek-examples,
-    primitive >= 0.9,
+    cek-core >= 0.1.0.0 && < 0.2,
+    cek-pykinos >= 0.1.0.0 && < 0.2,
+    pykinos-core >= 0.1.0.0 && < 0.2,
+    cek-examples >= 0.1.0.0 && < 0.2,
+    primitive >= 0.9 && < 0.10,
     hspec >= 2.10 && < 2.12
