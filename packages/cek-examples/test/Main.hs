@@ -11,6 +11,7 @@ import Data.Int (Int32)
 import Test.Hspec
 
 import Cek.Examples.Scheme
+import Cek.Examples.Mercury
 
 main :: IO ()
 main = hspec $ do
@@ -42,3 +43,16 @@ main = hspec $ do
       let body = In (SSeq (In (SSet 0 (In (SLit 25)))) (In (SVar 0)))
           term = In (SLet (In (SLit 10)) body)
       evalScheme 100 term `shouldBe` Right (Right (25 :: Int32))
+  describe "Cek.Examples.Mercury (WAM Conditional Trailing & KontStack Choice-Points)" $ do
+    it "finds all solutions via nondeterministic disjunction" $ do
+      -- q(X) :- X = 1 ; X = 2 ; X = 3
+      let goal = GDisj [GUnify (LVar 0) (LLit 1), GUnify (LVar 0) (LLit 2), GUnify (LVar 0) (LLit 3)]
+          solutions = solveMercury 10 1 goal
+      solutions `shouldBe` [[Just 1], [Just 2], [Just 3]]
+
+    it "prunes remaining disjuncts with GOnce (semidet cut)" $ do
+      -- q(X) :- once(X = 1 ; X = 2)
+      let goal = GOnce (GDisj [GUnify (LVar 0) (LLit 1), GUnify (LVar 0) (LLit 2)])
+          solutions = solveMercury 10 1 goal
+      solutions `shouldBe` [[Just 1]]
+
