@@ -10,7 +10,7 @@ description:
 
   Notice: This package is provided primarily as an executable architectural example
   and documentation case study within the @cek@ ecosystem.
-license: EUPL-1.2
+license: EUPL-1.2 OR Apache-2.0
 license-file: LICENSE
 author: Nadia Yvette Chambers
 maintainer: nadia.yvette.chambers@ik.me

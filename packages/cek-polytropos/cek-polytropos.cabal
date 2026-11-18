@@ -5,7 +5,7 @@ synopsis: Universal Polytropos Rep Dissection for CEK abstract machines
 description:
   Universal O(1) array cursor dissection over Polytropos.Core.Rep,
   enabling zero-cost structural traversal over open extensible rows.
-license: EUPL-1.2
+license: EUPL-1.2 OR Apache-2.0
 license-file: LICENSE
 author: Nadia Yvette Chambers
 maintainer: nadia.yvette.chambers@ik.me

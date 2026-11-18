@@ -8,7 +8,7 @@ description:
 
   Notice: This umbrella package aggregates the standalone example packages
   @cek-scheme@, @cek-mercury@, and @cek-oneml@ for testing and demonstration.
-license: EUPL-1.2
+license: EUPL-1.2 OR Apache-2.0
 license-file: LICENSE
 author: Nadia Yvette Chambers
 maintainer: nadia.yvette.chambers@ik.me

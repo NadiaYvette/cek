@@ -5,7 +5,7 @@ synopsis: Unrolled 32-frame SoA KontStack and 4096-cell chunked Store arena for 
 description:
   High-performance unboxed continuation stack and Store arena for CEK abstract machines,
   integrating Pykinos unboxed blocked memory substrates.
-license: EUPL-1.2
+license: EUPL-1.2 OR Apache-2.0
 license-file: LICENSE
 author: Nadia Yvette Chambers
 maintainer: nadia.yvette.chambers@ik.me
