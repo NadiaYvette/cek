@@ -1,0 +1,39 @@
+cabal-version: 3.0
+name: cek-polytropos
+version: 0.1.0.0
+synopsis: Universal Polytropos Rep Dissection for CEK abstract machines
+description:
+  Universal O(1) array cursor dissection over Polytropos.Core.Rep.
+license: EUPL-1.2
+author: Nadia Yvette Chambers
+maintainer: nadia.yvette.chambers@ik.me
+category: Development
+build-type: Simple
+tested-with: GHC == 9.14.1
+
+library
+  exposed-modules:
+    Cek.Polytropos.Dissect
+  hs-source-dirs: src
+  default-language: Haskell2010
+  ghc-options: -Wall -Wcompat -Wredundant-constraints
+  build-depends:
+    base >= 4.18 && < 5,
+    ghc-prim,
+    primitive >= 0.9,
+    cek-core,
+    polytropos-core
+
+test-suite tests
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  hs-source-dirs: test
+  default-language: Haskell2010
+  ghc-options: -Wall -Wcompat -Wredundant-constraints -threaded
+  build-depends:
+    base >= 4.18 && < 5,
+    cek-core,
+    cek-polytropos,
+    polytropos-core,
+    primitive >= 0.9,
+    hspec >= 2.10 && < 2.12
