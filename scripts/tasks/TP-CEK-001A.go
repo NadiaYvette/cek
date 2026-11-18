@@ -93,15 +93,17 @@ func main() {
         Left _ -> fail "expected Right on non-empty list"
         Right (h1, d1) -> do
           h1 ` + "`shouldBe`" + ` 10
-          case stepNext (100 :: Int) d1 of
+          let stepN :: Int -> ListDissect Int Int -> Either [Int] (Int, ListDissect Int Int)
+              stepN = stepNext
+          case stepN 100 d1 of
             Left _ -> fail "expected Right for second hole"
             Right (h2, d2) -> do
               h2 ` + "`shouldBe`" + ` 20
-              case stepNext (200 :: Int) d2 of
+              case stepN 200 d2 of
                 Left _ -> fail "expected Right for third hole"
                 Right (h3, d3) -> do
                   h3 ` + "`shouldBe`" + ` 30
-                  case stepNext (300 :: Int) d3 of
+                  case stepN 300 d3 of
                     Right _ -> fail "expected Left on terminal list"
                     Left finalCs -> finalCs ` + "`shouldBe`" + ` [100, 200, 300]
 `
