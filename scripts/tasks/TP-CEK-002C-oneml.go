@@ -101,7 +101,7 @@ func main() {
 		onemlTests := `
   describe "Cek.Examples.OneML (1ML First-Class Modules & MergeMorph3 Sealing)" $ do
     it "evaluates module field projection" $ do
-      let schemaMap 1 = Prim.primArrayFromList [10, 20]
+      let schemaMap (SchemaId 1) = Prim.primArrayFromList [10, 20]
           schemaMap _ = Prim.primArrayFromList []
           internSchema _ = SchemaId 1
           -- struct { f10 = 42, f20 = 99 } . f10
@@ -110,7 +110,7 @@ func main() {
       evalOneML schemaMap internSchema projTerm ` + "`shouldBe`" + ` V1Lit 42
 
     it "evaluates module functor application" $ do
-      let schemaMap 1 = Prim.primArrayFromList [10]
+      let schemaMap (SchemaId 1) = Prim.primArrayFromList [10]
           schemaMap _ = Prim.primArrayFromList []
           internSchema _ = SchemaId 1
           -- functor (m : {val x : Int}) -> m.x
