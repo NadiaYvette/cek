@@ -11,6 +11,7 @@ module Main (main) where
 
 import Test.Hspec
 import Cek.Core
+import Cek.Core.Dissect
 
 main :: IO ()
 main = hspec $ do
@@ -42,3 +43,24 @@ main = hspec $ do
 
       let (resNoFuel, _) = runCEKWithFuel 1 term
       resNoFuel `shouldBe` Left "OutOfFuel: Execution budget exhausted"
+
+  describe "Cek.Core.Dissect (McBride Polynomial Functor Dissection)" $ do
+    it "dissects variable-arity list spine left-to-right" $ do
+      let terms = [10 :: Int, 20, 30]
+      case stepIn terms of
+        Left _ -> fail "expected Right on non-empty list"
+        Right (h1, d1) -> do
+          h1 `shouldBe` 10
+          let stepN :: Int -> ListDissect Int Int -> Either [Int] (Int, ListDissect Int Int)
+              stepN = stepNext
+          case stepN 100 d1 of
+            Left _ -> fail "expected Right for second hole"
+            Right (h2, d2) -> do
+              h2 `shouldBe` 20
+              case stepN 200 d2 of
+                Left _ -> fail "expected Right for third hole"
+                Right (h3, d3) -> do
+                  h3 `shouldBe` 30
+                  case stepN 300 d3 of
+                    Right _ -> fail "expected Left on terminal list"
+                    Left finalCs -> finalCs `shouldBe` [100, 200, 300]
