@@ -11,6 +11,10 @@ import Data.Int (Int32)
 import Test.Hspec
 
 import Cek.Examples.Scheme
+import qualified Data.Primitive.PrimArray as Prim
+import qualified Data.Primitive.SmallArray as Small
+import Cek.Examples.OneML
+import Pykinos.Schema.HiddenClass (FieldId(..), SchemaId(..))
 import Cek.Examples.Mercury
 
 main :: IO ()
@@ -55,4 +59,24 @@ main = hspec $ do
       let goal = GOnce (GDisj [GUnify (LVar 0) (LLit 1), GUnify (LVar 0) (LLit 2)])
           solutions = solveMercury 10 1 goal
       solutions `shouldBe` [[Just 1]]
+
+  describe "Cek.Examples.OneML (1ML First-Class Modules & MergeMorph3 Sealing)" $ do
+    it "evaluates module field projection" $ do
+      let schemaMap (SchemaId 1) = Prim.primArrayFromList [10, 20]
+          schemaMap _ = Prim.primArrayFromList []
+          internSchema _ = SchemaId 1
+          -- struct { f10 = 42, f20 = 99 } . f10
+          structTerm = MStruct (SchemaId 1) (Small.smallArrayFromList [MLit 42, MLit 99])
+          projTerm = MProj structTerm (FieldId 10)
+      evalOneML schemaMap internSchema projTerm `shouldBe` V1Lit 42
+
+    it "evaluates module functor application" $ do
+      let schemaMap (SchemaId 1) = Prim.primArrayFromList [10]
+          schemaMap _ = Prim.primArrayFromList []
+          internSchema _ = SchemaId 1
+          -- functor (m : {val x : Int}) -> m.x
+          fTerm = MFunctor (MLit 0) (MProj (MVar 0) (FieldId 10))
+          argTerm = MStruct (SchemaId 1) (Small.smallArrayFromList [MLit 77])
+          appTerm = MApp fTerm argTerm
+      evalOneML schemaMap internSchema appTerm `shouldBe` V1Lit 77
 
