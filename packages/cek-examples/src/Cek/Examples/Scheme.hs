@@ -71,7 +71,7 @@ import Data.Primitive.SmallArray
 import GHC.Exts (unsafeCoerce#)
 import GHC.Generics (Generic1)
 
-import Cek.Core.Dissect (Dissect(..), Dissectable(..))
+import Cek.Core.Dissect (Dissect, Dissectable(..))
 import Cek.Pykinos.Kont
   ( CapturedKont(..)
   , FrameTag(..)
