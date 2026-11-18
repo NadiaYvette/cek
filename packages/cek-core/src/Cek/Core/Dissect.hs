@@ -68,6 +68,7 @@ import GHC.Generics
   , K1(..)
   , M1(..)
   , Par1(..)
+  , Rec1(..)
   , U1(..)
   , (:*:)(..)
   , (:+:)(..)
@@ -223,6 +224,18 @@ instance GDissect Par1 where
   type GDissectRep Par1 = Unit2
   gStepIn (Par1 j)  = Right (j, Unit2)
   gStepNext c Unit2 = Left (Par1 c)
+
+-- | Dissection through container functor 'Rec1 f'.
+--
+-- Delegates dissection directly to the inner 'Dissectable' container functor @f@.
+instance Dissectable f => GDissect (Rec1 f) where
+  type GDissectRep (Rec1 f) = Dissect f
+  gStepIn (Rec1 fj) = case stepIn fj of
+    Left fc       -> Left (Rec1 fc)
+    Right (j, df) -> Right (j, df)
+  gStepNext c df = case stepNext c df of
+    Left fc        -> Left (Rec1 fc)
+    Right (j, df') -> Right (j, df')
 
 -- | Dissection through metadata wrappers 'M1'.
 --

@@ -305,13 +305,14 @@ captureKontSoA :: KontStack s -> ST s (CapturedKont s)
 captureKontSoA (KontStack ref) = do
   top <- readSmallArray ref 0
   cur :: Int32 <- readByteArray (kbUnboxed top) 0
-  freezeChain top (fromIntegral cur)
+  freezeChain top cur
   pure (CapturedKont top (fromIntegral cur))
   where
+    freezeChain :: KontBlock s -> Int32 -> ST s ()
     freezeChain !blk !frzCursor = do
       existingFrz :: Int32 <- readByteArray (kbUnboxed blk) 1
-      when (fromIntegral frzCursor > existingFrz) $
-        writeByteArray (kbUnboxed blk) 1 (fromIntegral frzCursor :: Int32)
+      when (frzCursor > existingFrz) $
+        writeByteArray (kbUnboxed blk) 1 frzCursor
       case kbParent blk of
         Nothing -> pure ()
         Just p  -> freezeChain p 32
