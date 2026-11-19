@@ -1,6 +1,6 @@
 cabal-version: 3.0
 name: cek-polytropos
-version: 0.1.0.0
+version: 0.1.0.2
 synopsis: Universal Polytropos Rep Dissection for CEK abstract machines
 description:
   Universal O(1) array cursor dissection over Polytropos.Core.Rep,

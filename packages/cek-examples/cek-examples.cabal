@@ -1,6 +1,6 @@
 cabal-version: 3.0
 name: cek-examples
-version: 0.1.0.0
+version: 0.1.0.2
 synopsis: Umbrella showcase suite of mini-interpreters for CEK abstract machines
 description:
   Showcase mini-interpreters (Scheme, Prolog/Mercury, 1ML) demonstrating

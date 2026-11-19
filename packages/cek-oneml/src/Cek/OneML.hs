@@ -94,7 +94,6 @@ import GHC.Exts (unsafeCoerce#)
 
 import Cek.Pykinos.Kont
   ( FrameTag(..)
-  , KontStack
   , newKontStack
   , pattern FT_UpdateWHNF
   , popFrameSoA
@@ -104,9 +103,7 @@ import Cek.Pykinos.Store
   ( CellTag(..)
   , SoAStore(..)
   , StoreChunk(..)
-  , acquireSlot
   , allocThunkSoA
-  , allocWLitSoA
   , allocWNeuSoA
   , newSoAStore
   , pattern CT_Thunk

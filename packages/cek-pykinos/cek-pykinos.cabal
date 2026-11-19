@@ -1,6 +1,6 @@
 cabal-version: 3.0
 name: cek-pykinos
-version: 0.1.0.0
+version: 0.1.0.2
 synopsis: Unrolled 32-frame SoA KontStack and 4096-cell chunked Store arena for CEK
 description:
   High-performance unboxed continuation stack and Store arena for CEK abstract machines,

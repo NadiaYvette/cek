@@ -9,7 +9,7 @@ optional-packages:
 source-repository-package
   type: git
   location: https://github.com/NadiaYvette/pykinos
-  tag: v0.1.0.0
+  tag: v0.1.0.2
   subdir:
     packages/pykinos-core
 

@@ -1,6 +1,6 @@
 cabal-version: 3.0
 name: cek-oneml
-version: 0.1.0.0
+version: 0.1.0.2
 synopsis: Demonstrative 1ML first-class module evaluator for CEK machines
 description:
   An educational and demonstrative reference evaluator showcasing Andreas

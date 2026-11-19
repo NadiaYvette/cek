@@ -1,6 +1,6 @@
 cabal-version: 3.0
 name: cek-scheme
-version: 0.1.0.0
+version: 0.1.0.2
 synopsis: Demonstrative Call-by-Value Scheme reference interpreter for CEK machines
 description:
   An educational and demonstrative reference interpreter showcasing Call-by-Value
